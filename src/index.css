@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+/* Music Portfolio Design System - Dark Artistic Theme */
+
+@layer base {
+  :root {
+    /* Dark Background Theme */
+    --background: 230 35% 7%;
+    --foreground: 0 0% 98%;
+
+    /* Card Components */
+    --card: 230 25% 10%;
+    --card-foreground: 0 0% 95%;
+
+    /* Interactive Elements */
+    --popover: 230 25% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    /* Primary Brand Colors - Purple/Violet Theme */
+    --primary: 270 91% 65%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 270 100% 80%;
+
+    /* Secondary Colors - Deep Purple */
+    --secondary: 258 90% 25%;
+    --secondary-foreground: 0 0% 98%;
+
+    /* Muted Colors */
+    --muted: 230 15% 15%;
+    --muted-foreground: 0 0% 70%;
+
+    /* Accent Colors - Golden */
+    --accent: 45 100% 70%;
+    --accent-foreground: 230 35% 7%;
+
+    /* States */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Borders and Inputs */
+    --border: 230 20% 18%;
+    --input: 230 20% 18%;
+    --ring: 270 91% 65%;
+
+    /* Border Radius */
+    --radius: 0.75rem;
+
+    /* Custom Design Tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(45 100% 60%));
+    --gradient-background: linear-gradient(135deg, hsl(var(--background)), hsl(230 25% 10%));
+    
+    /* Shadows */
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.4);
+    --shadow-card: 0 8px 32px hsl(230 35% 7% / 0.8);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
