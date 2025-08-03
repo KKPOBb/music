@@ -1,15 +1,15 @@
-import Navbar from '../components/Navbar';
-// import Hero from '../components/Hero';
-import About from '../components/About';
+import Navbar from '../components/navbar';
+import Hero from '../components/hero';
+import About from '../components/about';
 import SocialLinks from '../components/SocialLinks';
-import Player from '../components/Player';
-import Footer from '../components/Footer';
+import Player from '../components/player';
+import Footer from '../components/footer';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      {/* <Hero /> */}
+      <Hero />
       <About />
       <SocialLinks className="py-20 bg-gradient-background" />
       <Player />

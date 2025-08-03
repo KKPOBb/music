@@ -3,9 +3,11 @@ import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
-import hero1 from '../assets/hero-1.jpg';
-import hero2 from '../assets/hero-2.jpg';
-import hero3 from '../assets/hero-3.jpg';
+import hero1 from '/IMG1.JPG';
+import hero2 from '/IMG2.JPG';
+import hero3 from '/IMG3.JPG';
+import hero4 from '/IMG4.JPG';
+import hero5 from '/IMG5.JPG';
 
 const Hero = () => {
   const slides = [
@@ -23,6 +25,16 @@ const Hero = () => {
       image: hero3,
       title: "Live Performances",
       subtitle: "Feel the energy of live music"
+    },
+    {
+      image: hero4,
+      title: "Behind the Scenes",
+      subtitle: "A glimpse into the creative process"
+    },
+    {
+      image: hero5,
+      title: "Fan Interactions",
+      subtitle: "Connecting with my audience"
     }
   ];
 
