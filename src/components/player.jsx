@@ -28,7 +28,7 @@ const Player = () => {
       artist: "Your Name",
       duration: "3:45",
       src: "/src/mp3/audio1.mp3",
-      cover: "/public/placeholder.webp",
+      cover: "/placeholder.webp",
     },
     {
       id: 2,
@@ -36,7 +36,7 @@ const Player = () => {
       artist: "Your Name",
       duration: "4:12",
       src: "/src/mp3/audio2.mp3",
-      cover: "/public/placeholder.webp",
+      cover: "/placeholder.webp",
     },
     {
       id: 3,
@@ -44,7 +44,7 @@ const Player = () => {
       artist: "Your Name",
       duration: "3:58",
       src: "/src/mp3/audio1.mp3",
-      cover: "/public/placeholder.webp",
+      cover: "/placeholder.webp",
     },
     {
       id: 4,
@@ -52,7 +52,7 @@ const Player = () => {
       artist: "Your Name",
       duration: "4:33",
       src: "/src/mp3/audio1.mp3",
-      cover: "/public/placeholder.webp",
+      cover: "/placeholder.webp",
     },
   ];
 
