@@ -27,7 +27,7 @@ const Player = () => {
       title: "Midnight Dreams",
       artist: "Your Name",
       duration: "3:45",
-      src: "/src/mp3/DYGO, Mxng0 - FUNK INFERNAL.mp3",
+      src: "/src/mp3/audio1.mp3",
       cover: "/placeholder.svg",
     },
     {
@@ -35,7 +35,7 @@ const Player = () => {
       title: "City Lights",
       artist: "Your Name",
       duration: "4:12",
-      src: "/src/mp3/funk-smooth-party-stylish-379509.mp3",
+      src: "/src/mp3/audio2.mp3",
       cover: "/placeholder.svg",
     },
     {
@@ -43,7 +43,7 @@ const Player = () => {
       title: "Ocean Waves",
       artist: "Your Name",
       duration: "3:58",
-      src: "/src/mp3/DYGO, Mxng0 - FUNK INFERNAL.mp3",
+      src: "/src/mp3/audio1.mp3",
       cover: "/placeholder.svg",
     },
     {
@@ -51,7 +51,7 @@ const Player = () => {
       title: "Golden Hour",
       artist: "Your Name",
       duration: "4:33",
-      src: "/src/mp3/DYGO, Mxng0 - FUNK INFERNAL.mp3",
+      src: "/src/mp3/audio1.mp3",
       cover: "/placeholder.svg",
     },
   ];
