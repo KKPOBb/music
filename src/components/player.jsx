@@ -8,7 +8,6 @@ import {
   FaVolumeUp,
   FaVolumeMute,
   FaMusic,
-  FaDownload,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 
@@ -57,6 +56,18 @@ const Player = () => {
     },
   ];
 
+  useEffect(() => {
+    // Default holatda birinchi qo‘shiqni tanlab qo‘yamiz
+    setCurrentTrack(tracks[0]);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      howlRef.current?.unload();
+      clearInterval(intervalRef.current);
+    };
+  }, []);
+
   const playTrack = (track) => {
     if (howlRef.current) howlRef.current.unload();
 
@@ -98,8 +109,9 @@ const Player = () => {
   };
 
   const toggleMute = () => {
-    setIsMuted(!isMuted);
-    if (howlRef.current) howlRef.current.volume(isMuted ? volume : 0);
+    const newMuted = !isMuted;
+    setIsMuted(newMuted);
+    if (howlRef.current) howlRef.current.volume(newMuted ? 0 : volume);
   };
 
   const formatTime = (time) => {
@@ -108,15 +120,11 @@ const Player = () => {
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
-  useEffect(() => {
-    return () => {
-      howlRef.current?.unload();
-      clearInterval(intervalRef.current);
-    };
-  }, []);
-
   return (
-    <section id="music" className="py-20 bg-[hsl(var(--background))] text-[hsl(var(--foreground))]">
+    <section
+      id="music"
+      className="py-20 bg-[hsl(var(--background))] text-[hsl(var(--foreground))]"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -156,8 +164,12 @@ const Player = () => {
 
               {currentTrack && (
                 <>
-                  <h3 className="text-lg font-bold mb-1">{currentTrack.title}</h3>
-                  <p className="text-sm text-muted-foreground">{currentTrack.artist}</p>
+                  <h3 className="text-lg font-bold mb-1">
+                    {currentTrack.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {currentTrack.artist}
+                  </p>
                 </>
               )}
             </div>
@@ -169,7 +181,11 @@ const Player = () => {
                   disabled={!currentTrack}
                   className="w-14 h-14 bg-gradient-primary text-primary-foreground rounded-full flex items-center justify-center transition-all hover:scale-105 hover:shadow-glow disabled:opacity-50"
                 >
-                  {isPlaying ? <FaPause className="w-6 h-6" /> : <FaPlay className="w-6 h-6 ml-1" />}
+                  {isPlaying ? (
+                    <FaPause className="w-6 h-6" />
+                  ) : (
+                    <FaPlay className="w-6 h-6 ml-1" />
+                  )}
                 </button>
               </div>
 
@@ -179,7 +195,9 @@ const Player = () => {
                     <div
                       className="bg-gradient-primary h-2 rounded-full"
                       style={{
-                        width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%`,
+                        width: `${
+                          duration > 0 ? (currentTime / duration) * 100 : 0
+                        }%`,
                       }}
                     />
                   </div>
@@ -226,7 +244,13 @@ const Player = () => {
               {tracks.map((track) => (
                 <div
                   key={track.id}
-                  onClick={() => playTrack(track)}
+                  onClick={() => {
+                    if (currentTrack?.id === track.id) {
+                      togglePlayPause();
+                    } else {
+                      playTrack(track);
+                    }
+                  }}
                   className={`flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 cursor-pointer ${
                     currentTrack?.id === track.id
                       ? "bg-primary/10 border border-primary/30"
@@ -242,13 +266,14 @@ const Player = () => {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="font-semibold truncate">{track.title}</h4>
-                    <p className="text-sm text-muted-foreground">{track.artist}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {track.artist}
+                    </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm text-muted-foreground">{track.duration}</span>
-                    <button className="text-muted-foreground hover:text-primary transition-colors p-1">
-                      <FaDownload className="h-4 w-4" />
-                    </button>
+                    <span className="text-sm text-muted-foreground">
+                      {track.duration}
+                    </span>
                   </div>
                 </div>
               ))}
