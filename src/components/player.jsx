@@ -27,7 +27,7 @@ const Player = () => {
       title: "Midnight Dreams",
       artist: "Your Name",
       duration: "3:45",
-      src: "/src/mp3/audio1.mp3",
+      src: "/mp3/audio1.mp3",
       cover: "/placeholder.webp",
     },
     {
@@ -35,7 +35,7 @@ const Player = () => {
       title: "City Lights",
       artist: "Your Name",
       duration: "4:12",
-      src: "/src/mp3/audio2.mp3",
+      src: "/mp3/audio2.mp3",
       cover: "/placeholder.webp",
     },
     {
@@ -43,7 +43,7 @@ const Player = () => {
       title: "Ocean Waves",
       artist: "Your Name",
       duration: "3:58",
-      src: "/src/mp3/audio1.mp3",
+      src: "/mp3/audio1.mp3",
       cover: "/placeholder.webp",
     },
     {
@@ -51,17 +51,16 @@ const Player = () => {
       title: "Golden Hour",
       artist: "Your Name",
       duration: "4:33",
-      src: "/src/mp3/audio1.mp3",
+      src: "/mp3/audio1.mp3",
       cover: "/placeholder.webp",
     },
   ];
 
   useEffect(() => {
-    // Default holatda birinchi qo‘shiqni tanlab qo‘yamiz
-    setCurrentTrack(tracks[0]);
-  }, []);
+    if (tracks.length > 0) {
+      playTrack(tracks[0]);
+    }
 
-  useEffect(() => {
     return () => {
       howlRef.current?.unload();
       clearInterval(intervalRef.current);
@@ -69,7 +68,10 @@ const Player = () => {
   }, []);
 
   const playTrack = (track) => {
-    if (howlRef.current) howlRef.current.unload();
+    if (howlRef.current) {
+      howlRef.current.unload();
+      clearInterval(intervalRef.current);
+    }
 
     const sound = new Howl({
       src: [track.src],
@@ -99,19 +101,27 @@ const Player = () => {
 
   const togglePlayPause = () => {
     if (!howlRef.current) return;
-    isPlaying ? howlRef.current.pause() : howlRef.current.play();
+    if (isPlaying) {
+      howlRef.current.pause();
+    } else {
+      howlRef.current.play();
+    }
   };
 
   const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);
     setVolume(newVolume);
-    if (howlRef.current && !isMuted) howlRef.current.volume(newVolume);
+    if (howlRef.current && !isMuted) {
+      howlRef.current.volume(newVolume);
+    }
   };
 
   const toggleMute = () => {
     const newMuted = !isMuted;
     setIsMuted(newMuted);
-    if (howlRef.current) howlRef.current.volume(newMuted ? 0 : volume);
+    if (howlRef.current) {
+      howlRef.current.volume(newMuted ? 0 : volume);
+    }
   };
 
   const formatTime = (time) => {
