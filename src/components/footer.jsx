@@ -45,7 +45,7 @@ const Footer = () => {
           target="_blank"
           className="pt-4 border-t border-[hsl(var(--border))] flex mx-auto"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
+          <div className="flex flex-col justify-between items-center mx-auto">
             <div className="flex items-center space-x-2 text-sm text-[hsl(var(--muted-foreground))]">
               <span>© {currentYear} MirikWeb. Made with</span>
               <FaHeart className="text-violet-500 animate-pulse" />
