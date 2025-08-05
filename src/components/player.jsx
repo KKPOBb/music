@@ -166,12 +166,12 @@ const Player = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-10"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
-            My Music
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-primary bg-clip-text">
+            Моя музыка
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
-            Discover my latest tracks and immerse yourself in a world of
-            melodies that touch the soul.
+            Откройте для себя мои последние треки и окунитесь в мир мелодий,
+            трогающих душу.
           </p>
         </motion.div>
 
@@ -261,6 +261,7 @@ const Player = () => {
                   value={isMuted ? 0 : volume}
                   onChange={handleVolumeChange}
                   className="flex-1 h-2 bg-muted rounded-lg cursor-pointer"
+                  style={{ accentColor: "#8b5cf6" }} // violet-500
                 />
               </div>
             </div>

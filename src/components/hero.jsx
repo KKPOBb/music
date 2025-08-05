@@ -1,45 +1,45 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/effect-fade';
-import 'swiper/css/pagination';
-import hero1 from '/IMG1.JPG';
-import hero2 from '/IMG2.JPG';
-import hero3 from '/IMG3.JPG';
-import hero4 from '/IMG4.JPG';
-import hero5 from '/IMG5.JPG';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectFade, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/pagination";
+import hero1 from "/IMG1.JPG";
+import hero2 from "/IMG2.JPG";
+import hero3 from "/IMG3.JPG";
+import hero4 from "/IMG4.JPG";
+import hero5 from "/IMG5.JPG";
 
 const Hero = () => {
   const slides = [
     {
       image: hero1,
       title: "Welcome to My Musical Journey",
-      subtitle: "Experience the soul through music"
+      subtitle: "Experience the soul through music",
     },
     {
       image: hero2,
       title: "Studio Sessions",
-      subtitle: "Where magic happens"
+      subtitle: "Where magic happens",
     },
     {
       image: hero3,
       title: "Live Performances",
-      subtitle: "Feel the energy of live music"
+      subtitle: "Feel the energy of live music",
     },
     {
       image: hero4,
       title: "Behind the Scenes",
-      subtitle: "A glimpse into the creative process"
+      subtitle: "A glimpse into the creative process",
     },
     {
       image: hero5,
       title: "Fan Interactions",
-      subtitle: "Connecting with my audience"
-    }
+      subtitle: "Connecting with my audience",
+    },
   ];
 
   const scrollToMusic = () => {
-    document.getElementById('music')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("music")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -48,13 +48,13 @@ const Hero = () => {
         modules={[Autoplay, EffectFade, Pagination]}
         effect="fade"
         autoplay={{
-          delay: 5000,
+          delay: 3000,
           disableOnInteraction: false,
         }}
         pagination={{
           clickable: true,
-          bulletClass: 'swiper-pagination-bullet',
-          bulletActiveClass: 'swiper-pagination-bullet-active',
+          bulletClass: "swiper-pagination-bullet",
+          bulletActiveClass: "swiper-pagination-bullet-active",
         }}
         loop={true}
         className="h-full"
@@ -80,13 +80,13 @@ const Hero = () => {
             Your Artist Name
           </h1>
           <p className="text-base md:text-lg lg:text-xl text-[hsl(var(--foreground)/0.9)] mb-6 animate-fade-in-delay">
-            Singer • Songwriter • Performer
+            Певец • Автор песен • Исполнитель
           </p>
           <button
             onClick={scrollToMusic}
-            className="inline-flex items-center px-6 py-3 rounded-full font-medium text-[hsl(var(--primary-foreground))] bg-[var(--gradient-primary)] hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)] transition-all duration-300 hover:scale-105"
+            className="backdrop-blur-xl inline-flex items-center px-6 py-3 rounded-full font-medium text-[hsl(var(--primary-foreground))] bg-[var(--gradient-primary)] hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)] transition-all duration-300 hover:scale-105"
           >
-            Listen Now
+            Слушать сейчас
           </button>
         </div>
       </div>
@@ -109,13 +109,25 @@ const Hero = () => {
         }
 
         @keyframes fade-in {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
         @keyframes fade-in-delay {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
         .animate-fade-in {

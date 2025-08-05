@@ -11,7 +11,7 @@ const Index = () => {
       <Navbar />
       <Hero />
       <About />
-      <SocialLinks className="py-20 bg-gradient-background" />
+      <SocialLinks />
       <Player />
       <Footer />
     </div>
