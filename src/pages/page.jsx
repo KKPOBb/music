@@ -1,9 +1,9 @@
 import Navbar from '../components/navbar';
 import Hero from '../components/hero';
 import About from '../components/about';
-import SocialLinks from '../components/SocialLinks';
 import Player from '../components/player';
 import Footer from '../components/footer';
+import SocialLinksMusic from '../components/SocialLinksMusic';
 
 const Index = () => {
   return (
@@ -11,7 +11,7 @@ const Index = () => {
       <Navbar />
       <Hero />
       <About />
-      <SocialLinks />
+      <SocialLinksMusic />
       <Player />
       <Footer />
     </div>

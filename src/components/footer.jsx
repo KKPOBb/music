@@ -51,13 +51,13 @@ const Footer = () => {
             className="text-center md:text-left"
             variants={leftItemVariants}
           >
-            <div className="flex items-center justify-center md:justify-start space-x-2 mb-3">
+            <div className="flex items-center justify-center md:justify-start space-x-2 mb-6">
               <FaMusic className="h-6 w-6 text-[hsl(var(--primary))]" />
-              <span className="text-lg font-bold bg-[var(--gradient-primary)] bg-clip-text text-transparent">
+              <span className="text-lg font-bold bg-[var(--gradient-primary)] bg-clip-text">
                 Violinboy
               </span>
             </div>
-            <p className="text-sm text-[hsl(var(--muted-foreground))] mb-3">
+            <p className="text-sm text-[hsl(var(--muted-foreground))] mb-6">
               Певец, автор песен и исполнитель, создающий музыку, которая
               говорит с душой.
             </p>
@@ -74,12 +74,12 @@ const Footer = () => {
 
           {/* Social Links */}
           <motion.div
-            className="text-center md:text-right"
+            className="md:mt-[-10px]"
             variants={rightItemVariants}
           >
-            <h3 className="text-base font-semibold mb-3">Подписывайтесь на меня</h3>
+            <h3 className="text-base font-semibold md:mb-10 flex items-center justify-center md:justify-end">Подписывайтесь на меня</h3>
             {/* SocialLinks'ga alohida animatsiya berish shart emas, chunki ota-onasi allaqachon animatsiyaga ega */}
-            <SocialLinks showTitle={false} className="mb-3 mt-[-40px]" />
+            <SocialLinks showTitle={false} className="mb-3 mt-[-40px] flex items-center justify-center md:justify-end " />
           </motion.div>
         </div>
 

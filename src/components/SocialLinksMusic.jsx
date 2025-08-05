@@ -1,36 +1,36 @@
 import {
-  FaInstagram,
-  FaYoutube,
-  FaTelegram,
+  FaSpotify,
   FaHeart,
   FaVk,
+  FaYandex,
 } from "react-icons/fa";
+import { SiApplemusic } from "react-icons/si";
 
-const SocialLinks = ({ showTitle = true, className = "" }) => {
-  const socialLinks = [
+const SocialLinksMusic = ({ showTitle = true, className = "" }) => {
+  const socialLinksMusic = [
     {
-      name: "Instagram",
-      icon: FaInstagram,
-      url: "https://www.instagram.com/violinboy___",
-      color: "hover:text-pink-500",
+      name: "Yandex Music",
+      icon: FaYandex,
+      url: "https://music.yandex.uz/artist/12482674?utm_source=web&utm_medium=copy_link",
+      color: "hover:text-yellow-500",
     },
     {
-      name: "Telegram",
-      icon: FaTelegram,
-      url: "https://t.me/violinboyy",
-      color: "hover:text-blue-500",
-    },
-    {
-      name: "YouTube",
-      icon: FaYoutube,
-      url: "https://youtube.com/@violinbooy",
-      color: "hover:text-red-500",
-    },
-     {
       name: "VK",
       icon: FaVk,
-      url: "https://vk.com/violinboyy",
+      url: "https://vk.com/artist/violinboy",
       color: "hover:text-blue-500",
+    },
+    {
+      name: "Apple Music",
+      icon: SiApplemusic,
+      url: "https://music.apple.com/uz/artist/violinboy/1575912002",
+      color: "hover:text-red-500",
+    },
+    {
+      name: "Spotify",
+      icon: FaSpotify,
+      url: "https://open.spotify.com/artist/7jCLOzaRo5gzuiBOYRdU3D?si=F-slHiqKTsiBldekB7ZH1Q",
+      color: "hover:text-green-500",
     },
   ];
 
@@ -50,8 +50,8 @@ const SocialLinks = ({ showTitle = true, className = "" }) => {
         </div>
       )}
 
-      <div className="flex justify-center items-center gap-4 mt-15 ">
-        {socialLinks.map((social) => {
+      <div className="flex justify-center items-center gap-4 md:mt-15">
+        {socialLinksMusic.map((social) => {
           const IconComponent = social.icon;
           return (
             <a
@@ -84,4 +84,4 @@ const SocialLinks = ({ showTitle = true, className = "" }) => {
   );
 };
 
-export default SocialLinks;
+export default SocialLinksMusic;
