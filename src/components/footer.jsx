@@ -52,16 +52,13 @@ const Footer = () => {
             variants={leftItemVariants}
           >
             <div className="flex items-center justify-center md:justify-start space-x-2 mb-6">
-              <FaMusic className="h-6 w-6 text-[hsl(var(--primary))]" />
-              <span className="text-lg font-bold bg-[var(--gradient-primary)] bg-clip-text">
-                Violinboy
-              </span>
+              <img src="/logo2.png" alt="Logo" className="w-25" />
             </div>
             <p className="text-sm text-[hsl(var(--muted-foreground))] mb-6">
               Певец, автор песен и исполнитель, создающий музыку, которая
               говорит с душой.
             </p>
-            <motion.a
+            {/* <motion.a
               href="mailto:your.email@example.com"
               className="inline-flex items-center space-x-2 text-[hsl(var(--primary))] hover:text-[hsl(var(--primary-glow))] transition-colors duration-300"
               whileHover={{ scale: 1.05 }}
@@ -69,17 +66,19 @@ const Footer = () => {
             >
               <FaEnvelope className="h-4 w-4" />
               <span>your.email@example.com</span>
-            </motion.a>
+            </motion.a> */}
           </motion.div>
 
           {/* Social Links */}
-          <motion.div
-            className="md:mt-[-10px]"
-            variants={rightItemVariants}
-          >
-            <h3 className="text-base font-semibold md:mb-10 flex items-center justify-center md:justify-end">Подписывайтесь на меня</h3>
+          <motion.div className="md:mt-[-10px]" variants={rightItemVariants}>
+            <h3 className="text-base font-semibold md:mb-10 flex items-center justify-center md:justify-end">
+              Подписывайтесь на меня
+            </h3>
             {/* SocialLinks'ga alohida animatsiya berish shart emas, chunki ota-onasi allaqachon animatsiyaga ega */}
-            <SocialLinks showTitle={false} className="mb-3 mt-[-40px] flex items-center justify-center md:justify-end " />
+            <SocialLinks
+              showTitle={false}
+              className="mb-3 mt-[-40px] flex items-center justify-center md:justify-end "
+            />
           </motion.div>
         </div>
 

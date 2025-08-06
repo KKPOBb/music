@@ -7,7 +7,7 @@ import SocialLinksMusic from '../components/SocialLinksMusic';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div>
       <Navbar />
       <Hero />
       <About />
