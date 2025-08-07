@@ -1,30 +1,23 @@
-import { useState, useEffect } from "react"; // <-- 1. useEffect import qilindi
+"use client";
+
+import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // --- YANGI QO'SHILGAN KOD BLOGI ---
-  // Bu useEffect `isOpen` holati o'zgarganda ishga tushadi
   useEffect(() => {
-    // Agar menyu ochiq bo'lsa...
     if (isOpen) {
-      // ...sahifadagi scrollni o'chiramiz
       document.body.style.overflow = "hidden";
     } else {
-      // Aks holda, scrollni qayta yoqamiz
       document.body.style.overflow = "unset";
     }
-
-    // "Cleanup" funksiyasi: Komponent ekrandan yo'qolganda
-    // scrollni qayta yoqish uchun kerak.
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [isOpen]); // Bu effekt faqat `isOpen` o'zgargandagina ishlaydi
-  // --- YANGI KOD BLOGI TUGADI ---
+  }, [isOpen]);
 
   const menuItems = [
     { name: "Главная", href: "#home" },
@@ -35,7 +28,13 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-[hsl(var(--border))]">
+      {/* --- Animated Navbar on page load --- */}
+      <motion.nav
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-[hsl(var(--border))]"
+      >
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex items-center h-16">
             <div className="flex items-center space-x-2">
@@ -44,14 +43,17 @@ const Navbar = () => {
 
             <div className="ml-auto flex items-center">
               <div className="hidden md:flex items-center space-x-6">
-                {menuItems.map((item) => (
-                  <a
+                {menuItems.map((item, index) => (
+                  <motion.a
                     key={item.name}
                     href={item.href}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 * index, duration: 0.4 }}
                     className="text-[hsl(var(--foreground))] hover:text-[hsl(var(--primary))] transition-[var(--transition-smooth)] px-2 py-1 text-sm font-medium"
                   >
                     {item.name}
-                  </a>
+                  </motion.a>
                 ))}
               </div>
 
@@ -69,30 +71,35 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
-      <div
-        className={`
-          md:hidden fixed inset-0 z-40 bg-background/90 backdrop-blur-sm 
-          transition-opacity duration-400 ease-in-out
-          flex flex-col items-center justify-center
-          ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}
-        `}
-      >
-        <ul className="flex flex-col items-center space-y-8">
-          {menuItems.map((item) => (
-            <li key={item.name}>
-              <a
+      {/* --- Animated Mobile Menu --- */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden fixed inset-0 z-40 bg-background/90 backdrop-blur-sm flex flex-col items-center justify-center space-y-8"
+          >
+            {menuItems.map((item, index) => (
+              <motion.a
+                key={item.name}
                 href={item.href}
-                onClick={toggleMenu} // Menyudagi link bosilganda ham menyuni yopadi
+                onClick={toggleMenu}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ delay: index * 0.1 }}
                 className="text-2xl font-semibold text-[hsl(var(--foreground))] hover:text-[hsl(var(--primary))] transition-colors duration-400"
               >
                 {item.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+              </motion.a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

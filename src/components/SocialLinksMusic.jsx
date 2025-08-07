@@ -1,12 +1,21 @@
-import {
-  FaSpotify,
-  FaHeart,
-  FaVk,
-  FaYandex,
-} from "react-icons/fa";
+"use client";
+
+import { FaSpotify, FaHeart, FaVk, FaYandex } from "react-icons/fa";
 import { SiApplemusic } from "react-icons/si";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { useRef, useEffect } from "react";
 
 const SocialLinksMusic = ({ showTitle = true, className = "" }) => {
+  const controls = useAnimation();
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [isInView, controls]);
+
   const socialLinksMusic = [
     {
       name: "Yandex Music",
@@ -36,10 +45,20 @@ const SocialLinksMusic = ({ showTitle = true, className = "" }) => {
 
   return (
     <div
+      ref={containerRef}
       className={`text-center bg-[hsl(var(--background))] text-[hsl(var(--foreground))] ${className}`}
     >
       {showTitle && (
-        <div className="mb-8">
+        <motion.div
+          initial="hidden"
+          animate={controls}
+          variants={{
+            hidden: { opacity: 0, y: 30 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 0.6 }}
+          className="mb-8"
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-primary bg-clip-text ">
             Свяжитесь со мной
           </h2>
@@ -47,18 +66,27 @@ const SocialLinksMusic = ({ showTitle = true, className = "" }) => {
             Следите за моим музыкальным путешествием и будьте в курсе последних
             релизов, закулисного контента и живых выступлений.
           </p>
-        </div>
+        </motion.div>
       )}
 
       <div className="flex justify-center items-center gap-4 md:mt-15">
-        {socialLinksMusic.map((social) => {
+        {socialLinksMusic.map((social, index) => {
           const IconComponent = social.icon;
           return (
-            <a
+            <motion.a
               key={social.name}
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
+              initial="hidden"
+              animate={controls}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.4, delay: index * 0.15 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
               className={`group relative p-3 rounded-full bg-card border border-border transition-all duration-300 hover:border-primary hover:shadow-glow hover:-translate-y-2 ${social.color}`}
               aria-label={social.name}
             >
@@ -69,16 +97,26 @@ const SocialLinksMusic = ({ showTitle = true, className = "" }) => {
                 {social.name}
                 <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-border"></div>
               </div>
-            </a>
+            </motion.a>
           );
         })}
       </div>
+
       {showTitle && (
-        <div className="mt-8 flex items-center justify-center space-x-2 text-muted-foreground">
+        <motion.div
+          initial="hidden"
+          animate={controls}
+          variants={{
+            hidden: { opacity: 0, y: 30 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-8 flex items-center justify-center space-x-2 text-muted-foreground"
+        >
           <span>Made with</span>
           <FaHeart className="text-violet-500 animate-pulse" />
           <span>for music lovers</span>
-        </div>
+        </motion.div>
       )}
     </div>
   );

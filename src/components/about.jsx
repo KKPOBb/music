@@ -62,7 +62,7 @@ const About = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: "easeInOut" }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-[var(--gradient-primary)] bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-[var(--gradient-primary)] bg-clip-text">
             Обо мне
           </h2>
           <p className="text-base md:text-lg text-[hsl(var(--muted-foreground))] max-w-2xl mx-auto">

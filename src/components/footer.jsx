@@ -1,5 +1,5 @@
 import SocialLinks from "./SocialLinks";
-import { FaMusic, FaEnvelope, FaHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const Footer = () => {
@@ -17,20 +17,20 @@ const Footer = () => {
     },
   };
 
-  // Chap tomondan chiqadigan elementlar uchun variant
-  const leftItemVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+  // Tepadan pastga tushadigan elementlar uchun variant
+  const slideInFromTopVariants = {
+    hidden: { opacity: 0, y: -50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
-  // O'ng tomondan chiqadigan elementlar uchun variant
-  const rightItemVariants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+  // Pastdan tepaga chiqadigan elementlar uchun variant
+  const slideInFromBottomVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
-  // Pastdan chiqadigan element uchun variant
-  const bottomItemVariants = {
+  // Eng pastdagi element uchun variant (alohida)
+  const copyrightVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.5 } },
   };
@@ -46,10 +46,10 @@ const Footer = () => {
     >
       <div className="max-w-6xl mx-auto px-4 py-10">
         <div className="grid md:grid-cols-2 gap-6 mb-8">
-          {/* Brand Section */}
+          {/* Brand Section (Tepadan tushadi) */}
           <motion.div
             className="text-center md:text-left"
-            variants={leftItemVariants}
+            variants={slideInFromTopVariants}
           >
             <div className="flex items-center justify-center md:justify-start space-x-2 mb-6">
               <img src="/logo2.png" alt="Logo" className="w-25" />
@@ -58,23 +58,16 @@ const Footer = () => {
               Певец, автор песен и исполнитель, создающий музыку, которая
               говорит с душой.
             </p>
-            {/* <motion.a
-              href="mailto:your.email@example.com"
-              className="inline-flex items-center space-x-2 text-[hsl(var(--primary))] hover:text-[hsl(var(--primary-glow))] transition-colors duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaEnvelope className="h-4 w-4" />
-              <span>your.email@example.com</span>
-            </motion.a> */}
           </motion.div>
 
-          {/* Social Links */}
-          <motion.div className="md:mt-[-10px]" variants={rightItemVariants}>
+          {/* Social Links (Pastdan chiqadi) */}
+          <motion.div
+            className="md:mt-[-10px]"
+            variants={slideInFromBottomVariants}
+          >
             <h3 className="text-base font-semibold md:mb-10 flex items-center justify-center md:justify-end">
               Подписывайтесь на меня
             </h3>
-            {/* SocialLinks'ga alohida animatsiya berish shart emas, chunki ota-onasi allaqachon animatsiyaga ega */}
             <SocialLinks
               showTitle={false}
               className="mb-3 mt-[-40px] flex items-center justify-center md:justify-end "
@@ -87,7 +80,7 @@ const Footer = () => {
           href="https://t.me/mirik_web"
           target="_blank"
           className="pt-4 border-t border-[hsl(var(--border))] flex mx-auto"
-          variants={bottomItemVariants}
+          variants={copyrightVariants}
         >
           <div className="flex flex-col justify-between items-center mx-auto">
             <div className="flex items-center space-x-2 text-sm text-[hsl(var(--muted-foreground))]">

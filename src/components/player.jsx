@@ -9,7 +9,7 @@ import {
   FaVolumeMute,
   FaMusic,
 } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 const Player = () => {
   const [currentTrack, setCurrentTrack] = useState(null);
@@ -20,6 +20,16 @@ const Player = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const howlRef = useRef(null);
   const intervalRef = useRef(null);
+
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [isInView, controls]);
 
   const tracks = [
     {
@@ -125,11 +135,7 @@ const Player = () => {
 
   const togglePlayPause = () => {
     if (!howlRef.current) return;
-    if (isPlaying) {
-      howlRef.current.pause();
-    } else {
-      howlRef.current.play();
-    }
+    isPlaying ? howlRef.current.pause() : howlRef.current.play();
   };
 
   const handleVolumeChange = (e) => {
@@ -157,12 +163,17 @@ const Player = () => {
   return (
     <section
       id="music"
+      ref={sectionRef}
       className="py-20 bg-[hsl(var(--background))] text-[hsl(var(--foreground))]"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial="hidden"
+          animate={controls}
+          variants={{
+            hidden: { opacity: 0, y: 30 },
+            visible: { opacity: 1, y: 0 },
+          }}
           transition={{ duration: 0.7 }}
           className="text-center mb-10"
         >
@@ -178,11 +189,18 @@ const Player = () => {
         <div className="grid lg:grid-cols-2 gap-6 items-start">
           {/* PLAYER */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial="hidden"
+            animate={controls}
+            variants={{
+              hidden: { opacity: 0, y: -40 }, // ⬆️ TEPA tarafdan chiqadi
+              visible: { opacity: 1, y: 0 },
+            }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-card rounded-xl p-6 shadow-card border border-border"
           >
+            {/* ... PLAYER CONTENTS */}
+            {/* (unchanged portion — o'zgartirishlar faqat animation variantlarida bo'ldi) */}
+
             <div className="text-center mb-4">
               <div className="w-32 h-32 md:w-40 md:h-40 mx-auto bg-gradient-secondary rounded-xl flex items-center justify-center mb-3 shadow-elegant">
                 {currentTrack ? (
@@ -261,7 +279,7 @@ const Player = () => {
                   value={isMuted ? 0 : volume}
                   onChange={handleVolumeChange}
                   className="flex-1 h-2 bg-muted rounded-lg cursor-pointer"
-                  style={{ accentColor: "#8b5cf6" }} // violet-500
+                  style={{ accentColor: "#8b5cf6" }}
                 />
               </div>
             </div>
@@ -269,8 +287,12 @@ const Player = () => {
 
           {/* PLAYLIST */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial="hidden"
+            animate={controls}
+            variants={{
+              hidden: { opacity: 0, y: 40 }, // ⬇️ PAST tarafdan chiqadi
+              visible: { opacity: 1, y: 0 },
+            }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-card rounded-xl p-6 shadow-card border border-border"
           >
